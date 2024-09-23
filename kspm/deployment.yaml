@@ -29,4 +29,4 @@ spec:
         - containerPort: 80
         securityContext:
           allowPrivilegeEscalation: false
-          runAsUser: 1000
+          runAsUser: 10000
