@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "public_bucket" {
-  bucket = "sportradar-training-sensitive-data"
+  bucket        = "sportradar-training-sensitive-data"
   force_destroy = true
 }
 
@@ -41,4 +41,11 @@ output "bucket_name" {
 
 output "bucket_url" {
   value = "http://${aws_s3_bucket.public_bucket.bucket}.s3.amazonaws.com"
+}
+resource "aws_s3_bucket_public_access_block" "public_bucket" {
+  block_public_acls       = true
+  block_public_policy     = true
+  bucket                  = aws_s3_bucket.public_bucket.id
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
